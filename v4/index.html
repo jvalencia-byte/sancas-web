@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sancás — Puertas, Parquets y Acabados de Madera · Viladecans, Barcelona</title>
+  <meta name="description" content="Empresa familiar especializada en puertas, parquets y acabados de madera. Showroom de 3.000 m² en Viladecans, Barcelona. Desde 1996.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Taviraj:ital,wght@0,200;0,300;1,200;1,300&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #0D0B09;
+      --white:  #FDFAF6;
+      --sand:   #D9C6AE;
+      --sand-text: #83694D; /* darkened sand for text — 4.93 on white (AA normal) */
+      --blue:   #47578D;
+      --text-secondary: #706C66; /* AA-compliant on white: 5.01 */
+
+      --serif:  'Taviraj', Georgia, serif;
+      --sans:   'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+      --ls:     -0.022em;
+
+      --ease-out:    cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-toggle: cubic-bezier(0.65, 0, 0.35, 1);
+
+      --dur-base:    250ms;
+      --dur-enter:   600ms;
+      --dur-reveal:  900ms;
+
+      --page-px: clamp(24px, 5vw, 80px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 200;
+      letter-spacing: var(--ls);
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--black); color: var(--white);
+      padding: 8px 16px; font-size: 13px;
+      z-index: 10000; border-radius: 0 0 4px 4px;
+    }
+    .skip-link:focus { top: 0; }
+
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    /* ============================================================
+       NAVIGATION — ultra-minimal
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px var(--page-px);
+      background: transparent;
+      transition: background var(--dur-enter) var(--ease-out);
+    }
+
+    nav.scrolled {
+      background: rgba(253,250,246,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-logo img {
+      height: 16px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color var(--dur-base) var(--ease-out);
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* ============================================================
+       HERO — Typography as art
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 var(--page-px);
+      padding-bottom: clamp(48px, 8vh, 100px);
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(48px, 13vw, 200px);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      color: var(--black);
+      margin-bottom: clamp(16px, 2vw, 28px);
+      opacity: 0;
+      animation: heroReveal var(--dur-reveal) 0.2s var(--ease-out) forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeIn var(--dur-reveal) 0.7s var(--ease-out) forwards;
+    }
+
+    .hero-subtitle {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: clamp(13px, 1.3vw, 17px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 38ch;
+    }
+
+    .hero-location {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand-text);
+      text-align: right;
+    }
+
+    .hero-location span {
+      display: block;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-line {
+      width: 100%;
+      height: 1px;
+      background: var(--sand);
+      margin-top: clamp(24px, 4vh, 48px);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: lineGrow 1.2s 1s var(--ease-out) forwards;
+    }
+
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes lineGrow {
+      to { transform: scaleX(1); }
+    }
+
+    /* ============================================================
+       SECTION SPACING
+    ============================================================ */
+    .section {
+      padding: clamp(80px, 12vw, 160px) var(--page-px);
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: clamp(32px, 5vw, 60px);
+    }
+
+    .section-number {
+      color: var(--sand-text);
+      margin-right: 12px;
+    }
+
+    /* ============================================================
+       ABOUT — text + small vignette image
+    ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: start;
+    }
+
+    .about-text-es {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(22px, 3vw, 38px);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      max-width: 22ch;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(24px, 3vw, 40px);
+    }
+
+    .about-text-en {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: clamp(14px, 1.2vw, 16px);
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 42ch;
+    }
+
+    .about-img {
+      width: clamp(180px, 60%, 320px);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       PROJECTS — asymmetric vignettes
+    ============================================================ */
+    .projects-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(20px, 3vw, 40px);
+      align-items: start;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card img {
+      width: 100%;
+      aspect-ratio: var(--ratio, 4/3);
+      object-fit: cover;
+      border-radius: 2px;
+      transition: transform 1.2s var(--ease-out);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .project-info {
+      margin-top: 14px;
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(17px, 1.8vw, 24px);
+      font-style: italic;
+      letter-spacing: -0.01em;
+    }
+
+    .project-meta {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .project-offset {
+      margin-top: clamp(60px, 10vw, 140px);
+    }
+
+    /* ============================================================
+       VIDEO — framed with generous air
+    ============================================================ */
+    .video-section {
+      padding: clamp(40px, 6vw, 80px) clamp(60px, 12vw, 200px);
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 2px;
+      background: #1A1816;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-caption {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .video-caption-es {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .video-caption-en {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sand-text);
+    }
+
+    /* ============================================================
+       PRODUCTS — minimal list
+    ============================================================ */
+    .products-list {
+      max-width: 900px;
+    }
+
+    .product-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: clamp(20px, 3vw, 32px) 0;
+      border-bottom: 1px solid rgba(13,11,9,0.08);
+      transition: border-color var(--dur-base) var(--ease-out);
+    }
+
+    .product-item:first-child {
+      border-top: 1px solid rgba(13,11,9,0.08);
+    }
+
+    .product-item:hover {
+      border-color: var(--sand);
+    }
+
+    .product-name {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(24px, 3.5vw, 44px);
+      letter-spacing: -0.015em;
+      transition: color var(--dur-base) var(--ease-out);
+    }
+
+    .product-item:hover .product-name {
+      color: var(--blue);
+    }
+
+    .product-type {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Small product image — appears on hover */
+    .product-item {
+      position: relative;
+    }
+
+    .product-thumb {
+      position: absolute;
+      right: 120px;
+      top: 50%;
+      transform: translateY(-50%) scale(0.92);
+      width: 140px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 2px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+      z-index: 2;
+    }
+
+    .product-item:hover .product-thumb {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+
+    /* ============================================================
+       SHOWROOM — text + image aside
+    ============================================================ */
+    .showroom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+    }
+
+    .showroom-title {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .showroom-subtitle {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: clamp(13px, 1.2vw, 16px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 42ch;
+    }
+
+    .showroom-detail {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 28px;
+    }
+
+    .showroom-detail a {
+      color: var(--black);
+      border-bottom: 1px solid var(--sand);
+      transition: border-color var(--dur-base);
+    }
+    .showroom-detail a:hover { border-color: var(--black); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      min-height: 44px;
+      border: 1px solid rgba(13,11,9,0.2);
+      border-radius: 2px;
+      transition: border-color var(--dur-base) var(--ease-out),
+                  background var(--dur-base) var(--ease-out);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--black);
+      background: rgba(13,11,9,0.03);
+    }
+
+    .btn-outline svg {
+      width: 14px; height: 14px;
+      transition: transform var(--dur-base) var(--ease-out);
+    }
+    .btn-outline:hover svg { transform: translateX(3px); }
+
+    .showroom-img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       FOOTER — whisper quiet
+    ============================================================ */
+    footer {
+      padding: clamp(40px, 6vw, 80px) var(--page-px) clamp(24px, 3vw, 40px);
+      border-top: 1px solid rgba(13,11,9,0.06);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-logo img {
+      height: 14px;
+      width: auto;
+      opacity: 0.4;
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 11px;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-nav-row {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-nav-row a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color var(--dur-base);
+    }
+    .footer-nav-row a:hover { color: var(--black); }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(13,11,9,0.06);
+      font-size: 10px;
+      color: var(--text-secondary);
+    }
+
+    .footer-bottom a {
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+    .footer-bottom a:hover { color: var(--black); }
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity var(--dur-reveal) var(--ease-out),
+                  transform var(--dur-reveal) var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .hero-title { opacity: 1; transform: none; }
+      .hero-meta { opacity: 1; }
+      .hero-line { transform: scaleX(1); }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: clamp(40px, 14vw, 80px); }
+      .about-grid { grid-template-columns: 1fr; }
+      .projects-layout { grid-template-columns: 1fr; }
+      .project-offset { margin-top: 0; }
+      .video-section { padding: 24px; }
+      .product-thumb { display: none; }
+      .showroom-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+    }
+
+    /* ============================================================
+       IMAGE FALLBACKS
+    ============================================================ */
+    .about-img { background-color: #E8DDD0; }
+    .project-card img { background-color: #E0D5C8; }
+    .video-frame { background-color: #1A1816; }
+    .showroom-img { background-color: #D4C8B8; }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" aria-label="Navegación principal">
+    <a href="/" class="nav-logo">
+      <img src="../assets/logo/sancas-black.svg" alt="sancás">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#showroom">Showroom</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         01 — HERO: Typography as art
+    ============================================================ -->
+    <section class="hero" aria-label="Inicio">
+      <h1 class="hero-title">
+        Puertas,<br>
+        <em>parquets</em><br>
+        y espacios.
+      </h1>
+      <div class="hero-meta">
+        <p class="hero-subtitle">
+          Doors, parquets and spaces that tell stories.<br>
+          Specialists since 1996.
+        </p>
+        <p class="hero-location">
+          Viladecans
+          <span>Barcelona · Desde 1996</span>
+        </p>
+      </div>
+      <div class="hero-line" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============================================================
+         02 — ABOUT
+    ============================================================ -->
+    <section class="section" aria-label="Sobre nosotros">
+      <p class="section-label reveal">
+        <span class="section-number">01</span> Sobre nosotros
+      </p>
+
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="about-text-es">
+            Desde 1996 en Viladecans, ayudamos a crear los espacios que imaginas.
+          </p>
+        </div>
+        <div class="about-right">
+          <p class="about-text-en reveal reveal-delay-1">
+            We are neither carpenters nor interior designers, although it may sometimes seem that way. We are specialists in finding the best solution for every project. We know the materials, we know how to work with them, and we make sure the result lives up to what you imagine.
+          </p>
+          <img
+            src="../assets/img/wood-detail.webp"
+            alt="Detalle macro de textura de madera — oficio Sancás"
+            class="about-img reveal reveal-delay-2"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 — PROJECTS
+    ============================================================ -->
+    <section class="section" aria-label="Proyectos">
+      <p class="section-label reveal">
+        <span class="section-number">02</span> Proyectos
+      </p>
+
+      <div class="projects-layout">
+        <div class="project-card reveal">
+          <img
+            src="../assets/img/project-kitchen.webp"
+            alt="Cocina integral en roble natural — proyecto Sancás"
+            style="--ratio: 4/3;"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <h3 class="project-name">Cocina integral en roble</h3>
+            <p class="project-meta">Revestimiento · Viladecans 2024</p>
+          </div>
+        </div>
+
+        <div class="project-card project-offset reveal reveal-delay-1">
+          <img
+            src="../assets/img/project-interior.webp"
+            alt="Interior cálido con estantería de madera — proyecto Sancás"
+            style="--ratio: 3/4;"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <h3 class="project-name">Estantería y acabados</h3>
+            <p class="project-meta">Interior · Barcelona 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-layout" style="margin-top: clamp(40px, 5vw, 80px);">
+        <div></div>
+        <div class="project-card reveal">
+          <img
+            src="../assets/img/project-cladding.jpg"
+            alt="Revestimiento mural en roble con mobiliario azul — proyecto Sancás"
+            style="--ratio: 16/10;"
+            loading="lazy"
+          >
+          <div class="project-info">
+            <h3 class="project-name">Revestimiento y mobiliario</h3>
+            <p class="project-meta">Mural · Gavà 2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 — VIDEO
+    ============================================================ -->
+    <section class="video-section reveal" aria-label="Vídeo">
+      <div class="video-frame">
+        <video
+          src="../assets/video/sancas-reel.webm"
+          autoplay muted loop playsinline
+          aria-label="Vídeo del proceso de trabajo Sancás"
+        ></video>
+      </div>
+      <div class="video-caption">
+        <p class="video-caption-es">Conocemos los materiales. Sabemos cómo trabajarlos.</p>
+        <p class="video-caption-en">The process</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 — PRODUCTS
+    ============================================================ -->
+    <section id="productos" class="section" aria-label="Productos">
+      <p class="section-label reveal">
+        <span class="section-number">03</span> Productos
+      </p>
+
+      <div class="products-list reveal">
+        <div class="product-item">
+          <h3 class="product-name">Puertas</h3>
+          <span class="product-type">Interior · Exterior · Correderas</span>
+          <img src="../assets/img/product-puertas.webp" alt="" class="product-thumb" loading="lazy">
+        </div>
+        <div class="product-item">
+          <h3 class="product-name">Parquet</h3>
+          <span class="product-type">Multicapa · Macizo · Laminado</span>
+          <img src="../assets/img/product-parquet.webp" alt="" class="product-thumb" loading="lazy">
+        </div>
+        <div class="product-item">
+          <h3 class="product-name">Tarima exterior</h3>
+          <span class="product-type">Composite · Tropical · Termotratada</span>
+          <img src="../assets/img/product-tarima.png" alt="" class="product-thumb" loading="lazy">
+        </div>
+        <div class="product-item">
+          <h3 class="product-name">Armarios</h3>
+          <span class="product-type">A medida · Empotrados · Vestidores</span>
+          <img src="../assets/img/hero-wardrobes.jpg" alt="" class="product-thumb" loading="lazy">
+        </div>
+        <div class="product-item">
+          <h3 class="product-name">Revestimientos</h3>
+          <span class="product-type">Pared · Techo · Acústicos</span>
+          <img src="../assets/img/project-cladding.jpg" alt="" class="product-thumb" loading="lazy">
+        </div>
+        <div class="product-item">
+          <h3 class="product-name">Pintura</h3>
+          <span class="product-type">Interior · Exterior · Decorativa</span>
+          <img src="../assets/img/hero-living.webp" alt="" class="product-thumb" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         06 — SHOWROOM
+    ============================================================ -->
+    <section id="showroom" class="section" aria-label="Showroom">
+      <p class="section-label reveal">
+        <span class="section-number">04</span> Showroom
+      </p>
+
+      <div class="showroom-grid">
+        <div class="reveal">
+          <h2 class="showroom-title">
+            Ven a ver,<br>tocar y decidir.
+          </h2>
+          <p class="showroom-subtitle">
+            Come see, touch and decide. Three thousand square metres of doors, flooring and cladding.
+          </p>
+          <address class="showroom-detail">
+            Calle de la Industria, 29<br>
+            08840 Viladecans, Barcelona<br>
+            <a href="tel:+34936370026">+34 936 370 026</a>
+          </address>
+          <a href="#contacto" class="btn-outline">
+            Visitar showroom
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <img
+            src="../assets/img/showroom.webp"
+            alt="Interior del showroom Sancás — escultura de madera"
+            class="showroom-img"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="contacto" aria-label="Pie de página">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="../assets/logo/sancas-black.svg" alt="sancás">
+        </div>
+        <p class="footer-tagline">Viladecans · Barcelona · Desde 1996</p>
+      </div>
+      <nav class="footer-nav-row" aria-label="Navegación secundaria">
+        <a href="#productos">Productos</a>
+        <a href="#showroom">Showroom</a>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Blog</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>
+        &copy; 2026 Sanc&aacute;s &middot;
+        <a href="#">Aviso legal</a> &middot;
+        <a href="#">Privacidad</a> &middot;
+        <a href="#">Cookies</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    /* ── Nav scroll state ── */
+    const nav = document.getElementById('nav');
+    const observer = new IntersectionObserver(
+      ([e]) => nav.classList.toggle('scrolled', !e.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(document.querySelector('.hero'));
+
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    /* ── Console ── */
+    console.log(
+      '%csancás',
+      'font-family: Georgia, serif; font-size: 48px; font-weight: 200; letter-spacing: 0.1em; color: #0D0B09;'
+    );
+    console.log(
+      '%cType-First Minimal — v4',
+      'font-family: sans-serif; font-size: 11px; color: #D9C6AE; letter-spacing: 0.15em; text-transform: uppercase;'
+    );
+  </script>
+
+</body>
+</html>
