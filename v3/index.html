@@ -89,19 +89,23 @@
       justify-content: space-between;
       align-items: center;
       padding: 24px clamp(24px, 4vw, 48px);
-      mix-blend-mode: difference;
+      background: rgba(13,11,9,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       transition: opacity var(--dur-enter) var(--ease-out);
     }
 
+    .nav-logo { display: flex; align-items: center; }
     .nav-logo img {
-      height: 18px;
+      height: 20px;
       width: auto;
+      display: block;
       filter: brightness(0) invert(1);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: clamp(16px, 2.5vw, 32px);
       list-style: none;
     }
 
@@ -111,6 +115,7 @@
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      white-space: nowrap;
       color: var(--white);
       opacity: 0.6;
       transition: opacity var(--dur-base) var(--ease-out);
@@ -667,6 +672,8 @@
     <ul class="nav-links">
       <li><a href="#productos">Productos</a></li>
       <li><a href="#showroom">Showroom</a></li>
+      <li><a href="#">Sobre nosotros</a></li>
+      <li><a href="#">Blog</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>

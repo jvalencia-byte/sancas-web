@@ -72,15 +72,17 @@
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .nav-logo img { height: 15px; width: auto; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 20px; width: auto; display: block; }
 
     .nav-links {
-      display: flex; gap: 24px; list-style: none;
+      display: flex; gap: clamp(16px, 2.5vw, 24px); list-style: none;
     }
 
     .nav-links a {
       font-weight: 300; font-size: 10px;
       letter-spacing: 0.15em; text-transform: uppercase;
+      white-space: nowrap;
       color: var(--grey);
       transition: color var(--dur-base);
     }
@@ -568,6 +570,8 @@
     <ul class="nav-links">
       <li><a href="#productos">Productos</a></li>
       <li><a href="#showroom">Showroom</a></li>
+      <li><a href="#">Sobre nosotros</a></li>
+      <li><a href="#">Blog</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>

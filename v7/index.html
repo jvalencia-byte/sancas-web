@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sancás — Puertas de madera y carpintería premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Taviraj:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:   #0D0B09;
+      --white:   #FDFAF6;
+      --sand:    #D9C6AE;
+      --blue:    #47578D;
+      --grey:    #8A8680;
+      --border:  rgba(13,11,9,0.12);
+      --serif:   'Taviraj', Georgia, serif;
+      --sans:    'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+      --ease:    cubic-bezier(0.25, 1, 0.5, 1);
+      --pad:     clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────────── */
+    .pad { padding-left: var(--pad); padding-right: var(--pad); }
+    .border-t { border-top: 1px solid var(--border); }
+    .border-b { border-bottom: 1px solid var(--border); }
+
+    .label {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: none;
+      border-radius: 50px;
+      padding: 0.9rem 1.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .btn:hover { background: var(--blue); transform: scale(1.03); }
+    .btn--outline {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--black);
+    }
+    .btn--outline:hover { background: var(--black); color: var(--white); }
+    .btn--white { background: var(--white); color: var(--black); }
+    .btn--white:hover { background: var(--sand); }
+
+    /* ─────────────────────────────────────────────
+       NAV — Pattern: sticky top bar with links + CTA
+    ───────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem var(--pad);
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(253,250,246,0.92);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-logo svg { height: 20px; width: auto; }
+
+    .nav-tagline {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      border-left: 1px solid var(--border);
+      padding-left: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      border: 1px solid var(--black);
+      border-radius: 50px;
+      padding: 0.6rem 1.4rem;
+      transition: all 0.3s var(--ease);
+    }
+    .nav-cta:hover { background: var(--black); color: var(--white); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-tagline { display: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO — Pattern: oversized condensed type + oval image
+    ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 4rem var(--pad) 3rem;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: clamp(280px, 30vw, 420px);
+      height: clamp(360px, 42vw, 560px);
+      border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.95) saturate(0.9);
+    }
+
+    .hero-top-labels {
+      position: absolute;
+      top: 3rem;
+      left: var(--pad);
+      right: var(--pad);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hero-headline {
+      position: relative;
+      z-index: 2;
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(3.5rem, 13vw, 14rem);
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .hero-sub {
+      position: relative;
+      z-index: 2;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-sub p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      line-height: 1.65;
+      max-width: 54ch;
+      text-align: center;
+      color: var(--black);
+    }
+
+    .hero-sub .btn { margin-top: 0.5rem; }
+
+    /* ─────────────────────────────────────────────
+       IDENTITY GRID — Pattern: "WE ARE SOCIAL HOUSE" asymmetric grid
+    ───────────────────────────────────────────── */
+    .identity {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+
+    .identity-text {
+      padding: 4rem var(--pad);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .identity-headline {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(2.5rem, 7vw, 7rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .identity-right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .identity-right-top {
+      padding: 2rem var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .arrows {
+      display: flex;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+      color: var(--grey);
+    }
+
+    .identity-featured {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .identity-featured img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+    .identity-featured:hover img { transform: scale(1.03); }
+
+    .identity-featured-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem var(--pad);
+      background: linear-gradient(transparent, rgba(13,11,9,0.7));
+      color: var(--white);
+    }
+
+    .identity-featured-overlay h3 {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .identity-featured-overlay .label { color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+
+    @media (max-width: 768px) {
+      .identity { grid-template-columns: 1fr; }
+      .identity-text { border-right: none; border-bottom: 1px solid var(--border); min-height: 50vh; }
+    }
+
+    /* ─────────────────────────────────────────────
+       SERVICES STRIP — Pattern: "THIS IS WHAT WE DO" + logos row
+    ───────────────────────────────────────────── */
+    .services-strip {
+      display: grid;
+      grid-template-columns: minmax(250px, 1fr) 2fr;
+      border-top: 1px solid var(--border);
+    }
+
+    .services-strip-left {
+      padding: 3rem var(--pad);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .services-strip-left h2 {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .services-logos {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .services-logos-row {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem var(--pad);
+      gap: 3rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .service-tag {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+      color: var(--black);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .service-tag--accent {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      .services-strip { grid-template-columns: 1fr; }
+      .services-strip-left { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    /* ─────────────────────────────────────────────
+       COLOR BLOCK — Pattern: bold full-width color section (like the red section)
+    ───────────────────────────────────────────── */
+    .color-block {
+      background: var(--blue);
+      color: var(--white);
+      padding: 6rem var(--pad) 4rem;
+    }
+
+    .color-block-headline {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(3rem, 10vw, 10rem);
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: 4rem;
+    }
+
+    .color-block-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .color-block-bottom .label { color: rgba(255,255,255,0.5); margin-bottom: 0.8rem; }
+
+    .color-block-bottom p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.85);
+      max-width: 50ch;
+    }
+
+    @media (max-width: 768px) {
+      .color-block-bottom { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       WHY — Pattern: "WHY SOCIAL HOUSE?" with circle image
+    ───────────────────────────────────────────── */
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      min-height: 90vh;
+    }
+
+    .why-left {
+      padding: 4rem var(--pad);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--border);
+    }
+
+    .why-headline {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6.5vw, 6.5rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      font-style: italic;
+    }
+
+    .why-copy {
+      margin-top: 3rem;
+    }
+
+    .why-copy p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      line-height: 1.7;
+      max-width: 42ch;
+      color: var(--black);
+    }
+
+    .why-copy .btn { margin-top: 2rem; }
+
+    .why-right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .why-right-top {
+      padding: 2rem var(--pad);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .why-circle {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+    }
+
+    .why-circle-img {
+      width: clamp(280px, 35vw, 500px);
+      height: clamp(280px, 35vw, 500px);
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .why-circle-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .why { grid-template-columns: 1fr; }
+      .why-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .why-circle-img { width: 75vw; height: 75vw; }
+    }
+
+    /* ─────────────────────────────────────────────
+       PROJECTS GRID — Pattern: featured case studies
+    ───────────────────────────────────────────── */
+    .projects {
+      padding: 0 var(--pad) 3rem;
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .projects-header h2 {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      text-transform: uppercase;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 4/3;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease);
+    }
+    .project-card:hover img { transform: scale(1.04); }
+
+    .project-card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      background: linear-gradient(transparent, rgba(13,11,9,0.65));
+      color: var(--white);
+    }
+
+    .project-card-info .label { color: rgba(255,255,255,0.6); margin-bottom: 0.4rem; }
+
+    .project-card-info h3 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       SHOWROOM CTA — Pattern: sand accent full bleed
+    ───────────────────────────────────────────── */
+    .showroom {
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 50vh;
+    }
+
+    .showroom-img {
+      overflow: hidden;
+    }
+    .showroom-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .showroom-content {
+      padding: 4rem var(--pad);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .showroom-content h2 {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .showroom-content p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      line-height: 1.65;
+      max-width: 40ch;
+    }
+
+    @media (max-width: 768px) {
+      .showroom { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER — Pattern: dark footer with columns
+    ───────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 4rem var(--pad) 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand .footer-logo svg { height: 22px; width: auto; }
+    .footer-brand .footer-logo svg path,
+    .footer-brand .footer-logo svg g { fill: var(--white); }
+
+    .footer-brand p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin-top: 1.2rem;
+      max-width: 28ch;
+    }
+
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col li + li { margin-top: 0.6rem; }
+
+    .footer-col a {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--sand); }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .footer-contact-group .label {
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.3rem;
+      display: block;
+      font-size: 0.58rem;
+    }
+
+    .footer-contact-group a {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.82rem;
+      color: var(--sand);
+      text-decoration: none;
+    }
+    .footer-contact-group a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .footer-bottom-links a:hover { color: var(--sand); }
+
+    .footer-tagline {
+      width: 100%;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+
+    .footer-tagline p {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      color: rgba(255,255,255,0.12);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 900px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       SCROLL ANIMATIONS
+    ───────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────────
+       VIDEO HERO OVERLAY
+    ───────────────────────────────────────────── */
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: clamp(280px, 30vw, 420px);
+      height: clamp(360px, 42vw, 560px);
+      border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.92) saturate(0.85);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-left">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 3508 803" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:20px;width:auto;">
+        <g transform="translate(0,803) scale(0.1,-0.1)" fill="#0D0B09" stroke="none">
+          <path d="M27050 7831 l-1365 -197 -3 -92 c-3 -89 -2 -92 20 -92 12 0 640 -43 1396 -96 756 -52 1376 -93 1379 -91 5 5 -14 578 -23 695 -5 59 -9 72 -22 71 -10 -1 -631 -90 -1382 -198z"/>
+          <path d="M12755 6459 c-554 -133 -1470 -361 -1476 -368 -3 -3 5 -40 18 -81 l24 -75 182 0 c153 -1 196 -4 269 -23 338 -84 550 -327 608 -692 6 -41 48 -566 94 -1167 l82 -1092 -67 -859 c-37 -473 -75 -899 -84 -946 -17 -95 -63 -233 -103 -311 -142 -282 -418 -475 -750 -526 l-82 -12 0 -89 0 -88 1290 0 1291 0 -3 86 -3 87 -118 24 c-451 90 -730 376 -828 845 -13 65 -37 347 -79 941 l-60 847 80 1103 80 1102 108 105 c356 349 797 604 1217 704 327 77 712 87 1000 25 576 -124 909 -530 1024 -1250 41 -252 122 -1032 166 -1584 l14 -180 -70 -885 c-38 -487 -76 -919 -85 -960 -33 -159 -97 -309 -179 -426 -61 -85 -187 -200 -284 -258 -97 -59 -268 -119 -386 -137 l-85 -12 0 -89 0 -88 1290 0 1291 0 -3 87 -3 87 -114 22 c-63 12 -142 32 -175 45 -381 137 -621 451 -682 889 -8 58 -37 470 -64 915 l-51 810 26 345 c14 190 41 543 60 785 43 524 53 797 36 945 -86 747 -541 1220 -1328 1380 -205 41 -359 53 -638 47 -274 -5 -369 -16 -570 -64 -478 -113 -875 -349 -1380 -822 l-130 -121 -3 530 c-2 497 -3 530 -20 529 -9 -1 -165 -37 -347 -80z"/>
+          <path d="M1640 6479 c-831 -100 -1446 -541 -1599 -1145 -35 -141 -44 -237 -38 -408 9 -241 50 -404 150 -600 162 -317 440 -558 912 -791 241 -119 446 -201 945 -380 628 -224 939 -356 1188 -503 357 -212 576 -442 695 -732 133 -325 127 -722 -14 -1003 -52 -103 -108 -178 -198 -267 -270 -267 -679 -408 -1236 -426 -752 -25 -1338 200 -1723 661 -284 340 -477 833 -545 1395 l-13 105 -82 3 -82 3 0 -846 0 -846 143 -93 c502 -328 1047 -521 1645 -580 232 -23 413 -28 607 -16 328 20 578 65 852 155 850 279 1314 890 1280 1685 -7 165 -27 280 -72 427 -119 380 -379 687 -820 964 -137 87 -458 247 -670 334 -149 62 -257 103 -915 347 -918 341 -1298 597 -1460 985 -42 101 -60 204 -60 347 0 487 269 826 763 961 267 72 627 82 944 25 577 -104 1010 -437 1277 -985 135 -276 209 -535 272 -957 l6 -38 89 0 89 0 -2 782 -3 782 -70 59 c-343 288 -888 500 -1495 583 -144 19 -638 28 -760 13z"/>
+          <path d="M7440 6483 c-446 -35 -961 -162 -1385 -343 -118 -50 -352 -166 -447 -222 l-68 -39 0 -859 0 -860 90 0 c104 0 92 -17 110 159 65 660 326 1232 710 1553 253 212 542 334 895 378 130 16 429 14 559 -4 779 -111 1272 -628 1450 -1521 30 -155 120 -814 112 -822 -3 -4 -482 -95 -1063 -204 -1174 -219 -1246 -234 -1447 -291 -690 -194 -1177 -542 -1411 -1006 -57 -112 -117 -296 -141 -427 -22 -121 -25 -409 -5 -530 59 -373 214 -674 468 -915 340 -322 802 -495 1403 -525 647 -33 1320 265 1918 849 l142 139 0 -54 c0 -30 -9 -202 -20 -384 -11 -181 -20 -351 -20 -377 l0 -48 840 0 840 0 0 89 0 88 -50 7 c-158 21 -343 90 -471 176 -236 159 -398 451 -438 790 -6 47 -36 639 -67 1315 l-57 1230 38 370 c20 204 40 436 43 516 13 381 -75 716 -263 999 -76 115 -278 312 -409 399 -305 203 -695 325 -1181 371 -100 9 -567 11 -675 3z m2030 -2810 c0 -10 -27 -547 -60 -1193 l-61 -1175 -112 -110 c-384 -376 -832 -611 -1302 -680 -146 -22 -422 -22 -579 0 -690 95 -1142 501 -1241 1115 -19 123 -19 325 0 429 67 352 283 657 623 879 106 69 319 171 447 213 89 30 2224 536 2268 538 10 1 17 -6 17 -16z"/>
+          <path d="M20895 6475 c-213 -26 -360 -55 -550 -111 -1080 -318 -1857 -1164 -2104 -2291 -60 -272 -75 -432 -76 -778 0 -191 5 -352 13 -420 97 -827 407 -1511 922 -2026 166 -167 267 -251 426 -358 388 -261 812 -413 1314 -472 135 -16 515 -16 650 0 626 73 1138 311 1551 721 337 335 591 764 747 1265 43 137 82 283 82 308 0 10 -22 20 -71 31 -106 24 -101 26 -127 -62 -141 -465 -442 -930 -792 -1224 -438 -368 -993 -544 -1598 -508 -347 21 -614 91 -919 241 -745 367 -1295 1151 -1493 2129 -62 307 -74 441 -74 820 0 372 8 468 60 727 145 719 543 1279 1114 1572 325 166 611 234 985 235 205 0 344 -16 516 -59 757 -191 1365 -784 1622 -1581 36 -111 80 -306 92 -404 3 -30 8 -67 11 -82 l6 -28 89 0 89 0 0 780 0 780 -122 91 c-553 410 -999 607 -1572 695 -141 22 -642 28 -791 9z"/>
+          <path d="M26535 6483 c-634 -55 -1224 -232 -1782 -535 l-113 -61 0 -863 0 -864 88 0 88 0 12 128 c41 433 162 834 342 1136 92 153 174 258 297 376 257 248 557 391 934 445 137 19 460 19 599 0 494 -70 869 -302 1130 -700 130 -199 251 -505 308 -785 35 -168 129 -847 119 -857 -4 -3 -508 -100 -1120 -215 -611 -114 -1177 -224 -1257 -244 -414 -103 -780 -265 -1050 -465 -114 -84 -301 -273 -378 -384 -73 -102 -159 -272 -197 -389 -153 -460 -86 -1000 173 -1401 280 -435 783 -711 1432 -786 158 -18 463 -15 595 5 548 85 1033 353 1565 864 58 55 105 100 106 99 1 -1 -9 -177 -22 -392 -13 -214 -23 -407 -24 -427 l0 -38 845 0 846 0 -3 86 -3 87 -110 22 c-137 28 -187 45 -300 101 -190 93 -332 238 -430 439 -68 137 -101 253 -121 414 -8 69 -40 672 -70 1338 l-55 1213 37 352 c41 401 53 668 35 815 -70 564 -357 974 -862 1228 -253 128 -614 221 -979 255 -105 9 -578 12 -675 3z m2025 -2838 c0 -24 -27 -561 -60 -1192 l-60 -1148 -83 -83 c-385 -391 -879 -649 -1362 -712 -117 -15 -383 -15 -510 0 -601 70 -1044 390 -1219 878 -67 188 -93 463 -61 652 44 266 170 496 385 704 184 177 425 320 689 406 106 35 2212 536 2264 539 14 1 17 -7 17 -44z"/>
+          <path d="M32190 6479 c-307 -35 -659 -145 -888 -276 -402 -232 -642 -544 -729 -946 -28 -126 -25 -437 5 -574 135 -624 572 -1003 1596 -1387 98 -37 296 -109 440 -160 514 -184 750 -280 986 -403 587 -304 872 -661 931 -1164 43 -370 -69 -705 -313 -934 -226 -213 -537 -340 -968 -397 -129 -16 -567 -17 -700 0 -926 117 -1500 649 -1744 1618 -31 122 -73 356 -82 459 l-7 75 -83 0 -84 0 0 -845 0 -844 89 -61 c373 -250 781 -431 1195 -530 554 -132 1158 -140 1686 -23 259 57 577 181 775 303 280 172 519 430 638 690 47 102 95 255 119 375 19 92 22 144 23 320 0 180 -3 226 -23 323 -65 321 -197 566 -432 803 -321 323 -736 547 -1595 864 -757 279 -931 350 -1175 476 -261 136 -469 297 -592 459 -60 78 -130 220 -153 310 -25 97 -31 322 -11 437 33 191 108 343 234 475 169 177 399 284 712 334 151 24 494 24 655 0 423 -63 731 -212 1005 -486 324 -323 518 -747 617 -1345 l27 -165 88 0 88 0 -2 782 -3 782 -70 59 c-363 306 -954 526 -1583 591 -164 17 -541 20 -672 5z"/>
+        </g>
+      </svg>
+    </a>
+    <span class="nav-tagline">Carpintería premium desde 1996</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#soluciones">Soluciones</a></li>
+    <li><a href="#showroom">Showroom</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Contacto</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     HERO — Oversized headline + oval video/image
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-top-labels">
+    <span class="label">Made in Sancás</span>
+    <span class="label">Barcelona · Viladecans</span>
+  </div>
+
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="../assets/video/sancas-reel.webm" type="video/webm">
+    </video>
+  </div>
+
+  <h1 class="hero-headline">Creamos<br>puertas que<br>inspiran</h1>
+
+  <div class="hero-sub">
+    <p>Desde 1996, Sancás transforma la madera en piezas de carpintería premium. Cada puerta es un umbral entre lo que eres y lo que imaginas. Calidad artesanal, acabados de primer nivel.</p>
+    <a href="#proyectos" class="btn">Descubre [+]</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     IDENTITY GRID — Asymmetric split + featured project
+══════════════════════════════════════════════ -->
+<section class="identity border-t" id="nosotros">
+  <div class="identity-text">
+    <h2 class="identity-headline">Somos<br>Sancás.</h2>
+  </div>
+  <div class="identity-right">
+    <div class="identity-right-top">
+      <span class="label">Proyecto destacado</span>
+      <div class="arrows">→ → →</div>
+    </div>
+    <div class="identity-featured">
+      <img src="../assets/img/project-interior.webp" alt="Interior proyecto Sancás">
+      <div class="identity-featured-overlay">
+        <p class="label">Residencial</p>
+        <h3>Reforma integral<br>Barcelona</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SERVICES STRIP — Categories + product tags
+══════════════════════════════════════════════ -->
+<section class="services-strip border-t" id="soluciones">
+  <div class="services-strip-left">
+    <h2>Esto es lo<br>que hacemos.</h2>
+    <a href="#" class="btn">Nuestro trabajo [+]</a>
+  </div>
+  <div class="services-logos">
+    <div class="services-logos-row">
+      <span class="service-tag--accent">Puertas</span>
+      <span class="service-tag">Interior</span>
+      <span class="service-tag">Exterior</span>
+      <span class="service-tag">Correderas</span>
+      <span class="service-tag">Pivotantes</span>
+      <span class="service-tag">A medida</span>
+    </div>
+    <div class="services-logos-row">
+      <span class="service-tag--accent">Suelos</span>
+      <span class="service-tag">Parquet</span>
+      <span class="service-tag">Tarima</span>
+      <span class="service-tag">Laminados</span>
+      <span class="service-tag">Vinílicos</span>
+    </div>
+    <div class="services-logos-row">
+      <span class="service-tag--accent">Complementos</span>
+      <span class="service-tag">Armarios</span>
+      <span class="service-tag">Revestimientos</span>
+      <span class="service-tag">Herrajes premium</span>
+      <span class="service-tag">Molduras</span>
+    </div>
+    <div class="services-logos-row">
+      <span class="service-tag--accent">Servicios</span>
+      <span class="service-tag">Asesoramiento personalizado</span>
+      <span class="service-tag">Instalación profesional</span>
+      <span class="service-tag">Proyectos llave en mano</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     COLOR BLOCK — Bold digital strategies → Bold craft
+══════════════════════════════════════════════ -->
+<section class="color-block">
+  <h2 class="color-block-headline fade-in">Artesanía<br>con carácter</h2>
+  <div class="color-block-bottom fade-in">
+    <div>
+      <p class="label">Elevamos espacios</p>
+      <p>Cada proyecto que realizamos parte de un sueño. Conocemos los materiales, sabemos trabajarlos y confiamos en el amplio abanico de soluciones que podemos ofrecer para encontrar siempre la mejor opción.</p>
+    </div>
+    <div>
+      <p class="label">Experiencia y cercanía</p>
+      <p>Con más de 3.000m² de showroom y almacenaje, somos pequeños, especiales y diferentes. Expertos en nuestro sector y conocedores de lo que hace falta para conseguir una alta customización y un trato premium.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     WHY — Circle image + manifesto
+══════════════════════════════════════════════ -->
+<section class="why border-t" id="por-que">
+  <div class="why-left">
+    <div>
+      <p class="label" style="margin-bottom:1rem;">Confianza y tradición</p>
+      <h2 class="why-headline">¿Por qué<br>Sancás?</h2>
+    </div>
+    <div class="why-copy fade-in">
+      <p>Empresa familiar creada en 1996 por la tercera generación dedicada a la comercialización de puertas de madera y sus complementos. La delicadeza de los acabados, la calidad y el resultado son nuestro portafolio vivo.</p>
+      <a href="#" class="btn">Conócenos [+]</a>
+    </div>
+  </div>
+  <div class="why-right">
+    <div class="why-right-top">
+      <span class="label">Lean into quality craftsmanship.</span>
+      <div class="arrows">→ → →</div>
+    </div>
+    <div class="why-circle">
+      <div class="why-circle-img">
+        <img src="../assets/img/wood-detail.webp" alt="Detalle de madera Sancás">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PROJECTS GRID — Case studies
+══════════════════════════════════════════════ -->
+<section class="projects border-t" id="proyectos">
+  <div class="projects-header">
+    <div>
+      <span class="label" style="display:block;margin-bottom:0.6rem;">Proyectos recientes</span>
+      <h2>Nuestro trabajo</h2>
+    </div>
+    <a href="#" class="btn btn--outline">Ver todos [+]</a>
+  </div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <img src="../assets/img/project-kitchen.webp" alt="Proyecto cocina">
+      <div class="project-card-info">
+        <p class="label">Residencial</p>
+        <h3>Cocina integral con<br>acabados en roble</h3>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="../assets/img/project-cladding.jpg" alt="Proyecto revestimiento">
+      <div class="project-card-info">
+        <p class="label">Comercial</p>
+        <h3>Revestimiento<br>de fachada en madera</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SHOWROOM — Sand accent block
+══════════════════════════════════════════════ -->
+<section class="showroom" id="showroom">
+  <div class="showroom-img">
+    <img src="../assets/img/showroom.webp" alt="Showroom Sancás">
+  </div>
+  <div class="showroom-content fade-in">
+    <span class="label">Visítanos</span>
+    <h2>Nuestro<br>Showroom</h2>
+    <p>3.000m² de espacio para inspirar, tangibilizar el buen hacer, evidenciar el resultado de un posible sueño. Ven a conocer nuestra exposición en Viladecans, Barcelona.</p>
+    <a href="#" class="btn btn--white">Reservar visita [+]</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer id="contacto">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg viewBox="0 0 3508 803" xmlns="http://www.w3.org/2000/svg" style="height:22px;width:auto;">
+          <g transform="translate(0,803) scale(0.1,-0.1)" fill="#FDFAF6" stroke="none">
+            <path d="M27050 7831 l-1365 -197 -3 -92 c-3 -89 -2 -92 20 -92 12 0 640 -43 1396 -96 756 -52 1376 -93 1379 -91 5 5 -14 578 -23 695 -5 59 -9 72 -22 71 -10 -1 -631 -90 -1382 -198z"/>
+            <path d="M1640 6479 c-831 -100 -1446 -541 -1599 -1145 -35 -141 -44 -237 -38 -408 9 -241 50 -404 150 -600 162 -317 440 -558 912 -791 241 -119 446 -201 945 -380 628 -224 939 -356 1188 -503 357 -212 576 -442 695 -732 133 -325 127 -722 -14 -1003 -52 -103 -108 -178 -198 -267 -270 -267 -679 -408 -1236 -426 -752 -25 -1338 200 -1723 661 -284 340 -477 833 -545 1395 l-13 105 -82 3 -82 3 0 -846 0 -846 143 -93 c502 -328 1047 -521 1645 -580 232 -23 413 -28 607 -16 328 20 578 65 852 155 850 279 1314 890 1280 1685 -7 165 -27 280 -72 427 -119 380 -379 687 -820 964 -137 87 -458 247 -670 334 -149 62 -257 103 -915 347 -918 341 -1298 597 -1460 985 -42 101 -60 204 -60 347 0 487 269 826 763 961 267 72 627 82 944 25 577 -104 1010 -437 1277 -985 135 -276 209 -535 272 -957 l6 -38 89 0 89 0 -2 782 -3 782 -70 59 c-343 288 -888 500 -1495 583 -144 19 -638 28 -760 13z"/>
+          </g>
+        </svg>
+      </div>
+      <p>Empresa familiar dedicada a la carpintería premium desde 1996. Viladecans, Barcelona.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Soluciones</h4>
+      <ul>
+        <li><a href="#">Puertas de interior</a></li>
+        <li><a href="#">Puertas de exterior</a></li>
+        <li><a href="#">Suelos y parquet</a></li>
+        <li><a href="#">Revestimientos</a></li>
+        <li><a href="#">Armarios</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Descubre</h4>
+      <ul>
+        <li><a href="#">Proyectos</a></li>
+        <li><a href="#">Showroom</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Nosotros</h4>
+      <ul>
+        <li><a href="#">Nuestra historia</a></li>
+        <li><a href="#">Nuestros valores</a></li>
+        <li><a href="#">Equipo</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <div class="footer-contact-group">
+        <span class="label">Showroom</span>
+        <a href="#">Viladecans, Barcelona</a>
+      </div>
+      <div class="footer-contact-group">
+        <span class="label">Consultas</span>
+        <a href="mailto:info@sancas.com">info@sancas.com</a>
+      </div>
+      <div class="footer-contact-group">
+        <span class="label">Teléfono</span>
+        <a href="tel:+34936000000">+34 936 000 000</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Sancás. Todos los derechos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Política de cookies</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Privacidad</a>
+    </div>
+  </div>
+
+  <div class="footer-tagline">
+    <p>cada puerta, un nuevo comienzo</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const faders = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  faders.forEach(f => obs.observe(f));
+</script>
+
+</body>
+</html>

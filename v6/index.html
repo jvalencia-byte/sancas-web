@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sancás — Puertas, Parquets y Acabados de Madera · Viladecans, Barcelona</title>
+  <meta name="description" content="Empresa familiar especializada en puertas, parquets y acabados de madera. Showroom de 3.000 m² en Viladecans, Barcelona. Desde 1996.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,200;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #F5EDE3;
+      --cream-dark: #EBE0D2;
+      --brown:      #2C2420;
+      --brown-soft: #5C4F46;
+      --terracotta: #C4654A;
+      --terra-soft: rgba(196, 101, 74, 0.12);
+      --forest:     #3D5A47;
+      --forest-soft:rgba(61, 90, 71, 0.10);
+      --sand:       #D4BFA8;
+      --sand-light: #E8D5C0;
+
+      --heading: 'Instrument Serif', Georgia, serif;
+      --body:    'DM Sans', 'Helvetica Neue', sans-serif;
+
+      --ease:    cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur:     300ms;
+      --dur-slow: 900ms;
+
+      --page: clamp(20px, 5vw, 72px);
+      --gap:  clamp(16px, 2.5vw, 32px);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      font-weight: 300;
+      color: var(--brown);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--brown); color: var(--cream);
+      padding: 8px 16px; font-size: 13px; z-index: 10000;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+    .skip-link:focus { top: 0; }
+
+    :focus-visible {
+      outline: 2px solid var(--terracotta);
+      outline-offset: 3px;
+    }
+
+    /* ============================================================
+       TEXTURE OVERLAY — subtle paper grain
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ============================================================
+       NAVIGATION — warm and grounded
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px var(--page);
+      transition: background var(--dur-slow) var(--ease),
+                  box-shadow var(--dur-slow) var(--ease);
+    }
+
+    nav.scrolled {
+      background: rgba(245, 237, 227, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--sand);
+    }
+
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img {
+      height: 20px;
+      width: auto;
+      display: block;
+      filter: brightness(0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(16px, 2.5vw, 32px);
+      list-style: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links a {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+      transition: color var(--dur);
+      padding: 8px 0;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    /* ============================================================
+       HERO — organic, workshop entry
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      padding: 0 var(--page);
+      align-items: end;
+      padding-bottom: clamp(40px, 6vh, 80px);
+      padding-top: 100px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vw, 40px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--forest-soft);
+      padding: 6px 14px;
+      border-radius: 100px;
+      width: fit-content;
+      opacity: 0;
+      animation: slideUp 0.8s 0.3s var(--ease) forwards;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--forest);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: var(--heading);
+      font-weight: 400;
+      font-size: clamp(44px, 8vw, 120px);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--brown);
+      opacity: 0;
+      animation: slideUp var(--dur-slow) 0.1s var(--ease) forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-title .line-3 {
+      display: inline-block;
+      font-size: 0.65em;
+      color: var(--brown-soft);
+    }
+
+    .hero-desc {
+      font-family: var(--body);
+      font-weight: 300;
+      font-size: clamp(14px, 1.3vw, 17px);
+      line-height: 1.75;
+      color: var(--brown-soft);
+      max-width: 38ch;
+      opacity: 0;
+      animation: slideUp 0.8s 0.5s var(--ease) forwards;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+      align-self: stretch;
+      padding-top: 100px;
+    }
+
+    .hero-img-main {
+      flex: 1;
+      width: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      opacity: 0;
+      animation: scaleIn 1.2s 0.2s var(--ease) forwards;
+    }
+
+    .hero-img-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    .hero-img-sm {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: var(--radius);
+      opacity: 0;
+    }
+
+    .hero-img-sm:nth-child(1) { animation: scaleIn 0.8s 0.4s var(--ease) forwards; }
+    .hero-img-sm:nth-child(2) { animation: scaleIn 0.8s 0.55s var(--ease) forwards; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ============================================================
+       SECTION COMMON
+    ============================================================ */
+    .section {
+      padding: clamp(80px, 12vw, 160px) var(--page);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+
+    .section-num {
+      font-family: var(--heading);
+      font-style: italic;
+      font-size: clamp(14px, 1.4vw, 18px);
+      color: var(--terracotta);
+    }
+
+    .section-label {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      margin-left: 16px;
+    }
+
+    /* ============================================================
+       ABOUT — storytelling block
+    ============================================================ */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(40px, 8vw, 120px);
+      align-items: start;
+    }
+
+    .about-quote {
+      font-family: var(--heading);
+      font-weight: 400;
+      font-size: clamp(26px, 3.8vw, 52px);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .about-quote em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3vw, 36px);
+    }
+
+    .about-body {
+      font-family: var(--body);
+      font-weight: 300;
+      font-size: clamp(14px, 1.2vw, 16px);
+      line-height: 1.85;
+      color: var(--brown-soft);
+      max-width: 44ch;
+    }
+
+    .about-detail {
+      display: flex;
+      gap: clamp(24px, 4vw, 48px);
+    }
+
+    .about-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .about-stat-num {
+      font-family: var(--heading);
+      font-size: clamp(28px, 3vw, 42px);
+      color: var(--terracotta);
+    }
+
+    .about-stat-label {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    /* ============================================================
+       PROJECTS — organic mosaic grid
+    ============================================================ */
+    .projects-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--gap);
+    }
+
+    .mosaic-tall {
+      grid-row: span 2;
+    }
+
+    .mosaic-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .mosaic-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s var(--ease);
+    }
+
+    .mosaic-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .mosaic-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: clamp(16px, 2vw, 28px);
+      background: linear-gradient(transparent, rgba(44, 36, 32, 0.7));
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mosaic-card-name {
+      font-family: var(--heading);
+      font-size: clamp(18px, 2vw, 26px);
+      color: var(--cream);
+    }
+
+    .mosaic-card-meta {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 237, 227, 0.7);
+    }
+
+    .mosaic-tall img {
+      aspect-ratio: auto;
+    }
+
+    .mosaic-wide img {
+      aspect-ratio: 16 / 10;
+    }
+
+    .mosaic-square img {
+      aspect-ratio: 1 / 1;
+    }
+
+    /* ============================================================
+       VIDEO — organic frame
+    ============================================================ */
+    .video-section {
+      padding: clamp(20px, 4vw, 60px) var(--page);
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--brown);
+    }
+
+    .video-wrapper video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .video-text {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: clamp(24px, 4vw, 48px);
+      background: linear-gradient(transparent 0%, rgba(44,36,32,0.6) 100%);
+    }
+
+    .video-text p {
+      font-family: var(--heading);
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 32px);
+      color: var(--cream);
+      max-width: 30ch;
+      line-height: 1.4;
+    }
+
+    .video-text span {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--body);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 237, 227, 0.6);
+    }
+
+    /* ============================================================
+       PRODUCTS — tactile cards
+    ============================================================ */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+
+    .product-card {
+      background: var(--cream-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 36, 32, 0.08);
+    }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .product-card-body {
+      padding: clamp(16px, 2vw, 24px);
+    }
+
+    .product-card-name {
+      font-family: var(--heading);
+      font-size: clamp(20px, 2vw, 28px);
+      margin-bottom: 4px;
+    }
+
+    .product-card-type {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--brown-soft);
+      letter-spacing: 0.02em;
+    }
+
+    .product-card-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--forest-soft);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ============================================================
+       SHOWROOM — warm invitation
+    ============================================================ */
+    .showroom-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .showroom-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    .showroom-content {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 24px);
+    }
+
+    .showroom-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      width: fit-content;
+    }
+
+    .showroom-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .showroom-title {
+      font-family: var(--heading);
+      font-weight: 400;
+      font-size: clamp(30px, 4.5vw, 56px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .showroom-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .showroom-body {
+      font-family: var(--body);
+      font-weight: 300;
+      font-size: clamp(14px, 1.2vw, 16px);
+      line-height: 1.8;
+      color: var(--brown-soft);
+      max-width: 40ch;
+    }
+
+    .showroom-address {
+      font-family: var(--body);
+      font-size: 13px;
+      font-style: normal;
+      color: var(--brown-soft);
+      line-height: 1.9;
+    }
+
+    .showroom-address a {
+      color: var(--brown);
+      border-bottom: 1px solid var(--sand);
+      transition: border-color var(--dur);
+    }
+    .showroom-address a:hover { border-color: var(--terracotta); }
+
+    .btn-terra {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      background: var(--terracotta);
+      padding: 14px 28px;
+      min-height: 48px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--dur) var(--ease),
+                  transform var(--dur) var(--ease);
+    }
+
+    .btn-terra:hover {
+      background: #B55A40;
+      transform: translateY(-1px);
+    }
+
+    .btn-terra svg {
+      width: 14px; height: 14px;
+      transition: transform var(--dur) var(--ease);
+    }
+    .btn-terra:hover svg { transform: translateX(3px); }
+
+    /* ============================================================
+       FOOTER — workshop sign-off
+    ============================================================ */
+    footer {
+      padding: clamp(40px, 6vw, 80px) var(--page) clamp(24px, 3vw, 40px);
+      border-top: 1px solid var(--sand);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 14px;
+      width: auto;
+      filter: brightness(0.2);
+      opacity: 0.5;
+    }
+
+    .footer-tagline {
+      font-family: var(--heading);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--brown-soft);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-nav a {
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+      transition: color var(--dur);
+    }
+    .footer-nav a:hover { color: var(--terracotta); }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--brown-soft);
+    }
+
+    .footer-bottom a {
+      color: var(--brown-soft);
+      transition: color var(--dur);
+    }
+    .footer-bottom a:hover { color: var(--brown); }
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--dur-slow) var(--ease),
+                  transform var(--dur-slow) var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .hero-title, .hero-desc, .hero-badge,
+      .hero-img-main, .hero-img-sm { opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 120px; padding-bottom: 40px; }
+      .hero-right { padding-top: 0; }
+      .hero-title { font-size: clamp(40px, 12vw, 72px); }
+      .about-layout { grid-template-columns: 1fr; }
+      .projects-mosaic { grid-template-columns: 1fr 1fr; }
+      .mosaic-tall { grid-row: span 1; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .showroom-layout { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 540px) {
+      .projects-mosaic { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-img-row { grid-template-columns: 1fr; }
+      .about-detail { flex-direction: column; gap: 16px; }
+    }
+
+    /* ── Image fallbacks ── */
+    .hero-img-main, .hero-img-sm, .about-img,
+    .mosaic-card img, .product-card img, .showroom-img {
+      background-color: var(--cream-dark);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav" aria-label="Navegación principal">
+    <a href="/" class="nav-logo">
+      <img src="../assets/logo/sancas-black.svg" alt="sancás">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#showroom">Showroom</a></li>
+      <li><a href="#">Sobre nosotros</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-label="Inicio">
+      <div class="hero-left">
+        <span class="hero-badge">Desde 1996 en Viladecans</span>
+        <h1 class="hero-title">
+          Puertas,<br>
+          <em>parquets</em><br>
+          <span class="line-3">y espacios que cuentan historias.</span>
+        </h1>
+        <p class="hero-desc">
+          Especialistas en madera con showroom de 3.000 m². Cada proyecto es una conversación entre material, espacio y vida.
+        </p>
+      </div>
+      <div class="hero-right">
+        <img
+          src="../assets/img/hero-door.jpg"
+          alt="Persona frente a puerta de roble — interior Sancás"
+          class="hero-img-main"
+          loading="eager"
+        >
+        <div class="hero-img-row">
+          <img
+            src="../assets/img/wood-detail.webp"
+            alt="Detalle macro de textura de madera"
+            class="hero-img-sm"
+            loading="eager"
+          >
+          <img
+            src="../assets/img/product-parquet.webp"
+            alt="Parquet de roble instalado"
+            class="hero-img-sm"
+            loading="eager"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================ -->
+    <section class="section" aria-label="Sobre nosotros">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <span class="section-label">Sobre nosotros</span>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="about-layout">
+        <div class="reveal">
+          <p class="about-quote">
+            Ni carpinteros ni interioristas. Somos especialistas en encontrar <em>la mejor solución</em> para cada proyecto.
+          </p>
+        </div>
+        <div class="about-right">
+          <p class="about-body reveal reveal-d1">
+            We know the materials, we know how to work with them, and we make sure the result lives up to what you imagine. Every project is a conversation between wood, space and life.
+          </p>
+          <div class="about-detail reveal reveal-d2">
+            <div class="about-stat">
+              <span class="about-stat-num">1996</span>
+              <span class="about-stat-label">Fundación</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">3.000 m²</span>
+              <span class="about-stat-label">Showroom</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">Familiar</span>
+              <span class="about-stat-label">Empresa</span>
+            </div>
+          </div>
+          <img
+            src="../assets/img/project-interior.webp"
+            alt="Interior cálido con estantería de madera — proyecto Sancás"
+            class="about-img reveal reveal-d3"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS — organic mosaic
+    ============================================================ -->
+    <section class="section" aria-label="Proyectos">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <span class="section-label">Proyectos</span>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="projects-mosaic">
+        <div class="mosaic-card mosaic-tall reveal">
+          <img
+            src="../assets/img/hero-door.jpg"
+            alt="Puerta de roble en interior luminoso"
+            loading="lazy"
+          >
+          <div class="mosaic-card-overlay">
+            <h3 class="mosaic-card-name">Puerta en roble natural</h3>
+            <span class="mosaic-card-meta">Interior · Barcelona 2024</span>
+          </div>
+        </div>
+
+        <div class="mosaic-card mosaic-square reveal reveal-d1">
+          <img
+            src="../assets/img/project-kitchen.webp"
+            alt="Cocina integral en roble — proyecto Sancás"
+            loading="lazy"
+          >
+          <div class="mosaic-card-overlay">
+            <h3 class="mosaic-card-name">Cocina integral</h3>
+            <span class="mosaic-card-meta">Revestimiento · 2024</span>
+          </div>
+        </div>
+
+        <div class="mosaic-card mosaic-square reveal reveal-d2">
+          <img
+            src="../assets/img/wood-detail.webp"
+            alt="Detalle de veta de madera"
+            loading="lazy"
+          >
+          <div class="mosaic-card-overlay">
+            <h3 class="mosaic-card-name">Textura y detalle</h3>
+            <span class="mosaic-card-meta">Acabado natural</span>
+          </div>
+        </div>
+
+        <div class="mosaic-card mosaic-wide reveal reveal-d1" style="grid-column: 2 / 4;">
+          <img
+            src="../assets/img/project-cladding.jpg"
+            alt="Revestimiento mural en roble con mobiliario azul"
+            loading="lazy"
+          >
+          <div class="mosaic-card-overlay">
+            <h3 class="mosaic-card-name">Revestimiento y mobiliario</h3>
+            <span class="mosaic-card-meta">Mural · Gavà 2024</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIDEO
+    ============================================================ -->
+    <section class="video-section reveal" aria-label="Vídeo">
+      <div class="video-wrapper">
+        <video
+          src="../assets/video/sancas-reel.webm"
+          autoplay muted loop playsinline
+          aria-label="Vídeo del proceso de trabajo Sancás"
+        ></video>
+        <div class="video-text">
+          <p>Conocemos los materiales. Sabemos cómo trabajarlos.</p>
+          <span>Nuestro proceso</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PRODUCTS
+    ============================================================ -->
+    <section id="productos" class="section" aria-label="Productos">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <span class="section-label">Productos</span>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card reveal">
+          <img src="../assets/img/product-puertas.webp" alt="Puertas de roble — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Puertas</h3>
+            <p class="product-card-type">Interior, exterior y correderas</p>
+            <span class="product-card-tag">Más vendido</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-d1">
+          <img src="../assets/img/product-parquet.webp" alt="Parquet de roble — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Parquet</h3>
+            <p class="product-card-type">Multicapa, macizo y laminado</p>
+            <span class="product-card-tag">Clásico</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-d2">
+          <img src="../assets/img/product-tarima.png" alt="Tarima exterior — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Tarima exterior</h3>
+            <p class="product-card-type">Composite, tropical y termotratada</p>
+            <span class="product-card-tag">Exterior</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <img src="../assets/img/hero-wardrobes.jpg" alt="Armarios a medida — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Armarios</h3>
+            <p class="product-card-type">A medida, empotrados y vestidores</p>
+            <span class="product-card-tag">A medida</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-d1">
+          <img src="../assets/img/hero-living.webp" alt="Salón con acabados de pintura — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Pintura</h3>
+            <p class="product-card-type">Interior, exterior y decorativa</p>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-d2">
+          <img src="../assets/img/project-cladding.jpg" alt="Revestimiento mural — Sancás" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="product-card-name">Revestimientos</h3>
+            <p class="product-card-type">Pared, techo y acústicos</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SHOWROOM
+    ============================================================ -->
+    <section id="showroom" class="section" aria-label="Showroom">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <span class="section-label">Showroom</span>
+        <span class="section-divider"></span>
+      </div>
+
+      <div class="showroom-layout">
+        <img
+          src="../assets/img/showroom.webp"
+          alt="Interior del showroom Sancás"
+          class="showroom-img reveal"
+          loading="lazy"
+        >
+        <div class="showroom-content reveal reveal-d1">
+          <span class="showroom-eyebrow">3.000 m² para explorar</span>
+          <h2 class="showroom-title">
+            Ven a <em>ver,</em><br>tocar y decidir.
+          </h2>
+          <p class="showroom-body">
+            Three thousand square metres of doors, flooring and cladding. Come see everything in person at our Viladecans showroom.
+          </p>
+          <address class="showroom-address">
+            Calle de la Industria, 29<br>
+            08840 Viladecans, Barcelona<br>
+            <a href="tel:+34936370026">+34 936 370 026</a>
+          </address>
+          <a href="#contacto" class="btn-terra">
+            Visitar showroom
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="contacto" aria-label="Pie de página">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/logo/sancas-black.svg" alt="sancás">
+        <p class="footer-tagline">Puertas, parquets y espacios desde 1996</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación secundaria">
+        <a href="#productos">Productos</a>
+        <a href="#showroom">Showroom</a>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Blog</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sancás · Viladecans, Barcelona</p>
+      <p>
+        <a href="#">Aviso legal</a> ·
+        <a href="#">Privacidad</a> ·
+        <a href="#">Cookies</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('nav');
+    const hero = document.querySelector('.hero');
+    const navObs = new IntersectionObserver(
+      ([e]) => nav.classList.toggle('scrolled', !e.isIntersecting),
+      { threshold: 0.05 }
+    );
+    navObs.observe(hero);
+
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const rObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          rObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => rObs.observe(el));
+
+    /* ── Console ── */
+    console.log(
+      '%csancás',
+      'font-family: Georgia, serif; font-size: 36px; font-weight: 400; letter-spacing: 0.08em; color: #2C2420;'
+    );
+    console.log(
+      '%cTaller Vivo — v6',
+      'font-family: sans-serif; font-size: 11px; color: #C4654A; letter-spacing: 0.12em; text-transform: uppercase;'
+    );
+  </script>
+
+</body>
+</html>
