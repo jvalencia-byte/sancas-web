@@ -292,6 +292,195 @@
     @keyframes cardReveal {
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* ── Style Guide Section ── */
+    .section-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 0;
+    }
+
+    .section-header h2 {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-header p {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.65;
+      max-width: 55ch;
+    }
+
+    .styleguide-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .sg-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+      text-decoration: none;
+      color: inherit;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardReveal 0.6s var(--ease-out) forwards;
+    }
+
+    .sg-card:nth-child(1) { animation-delay: 0.15s; }
+    .sg-card:nth-child(2) { animation-delay: 0.3s; }
+
+    .sg-card:hover {
+      border-color: var(--sand);
+      box-shadow: 0 8px 30px rgba(13, 11, 9, 0.06);
+    }
+
+    .sg-card-visual {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Colors card visual */
+    .sg-visual--colors {
+      background: #FAFAF8;
+      gap: 12px;
+      padding: 32px;
+    }
+
+    .sg-color-dot {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    .sg-card:hover .sg-color-dot {
+      transform: scale(1.1);
+    }
+
+    .sg-color-dot:nth-child(1) { background: #000000; }
+    .sg-color-dot:nth-child(2) { background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+    .sg-color-dot:nth-child(3) { background: #47578D; }
+    .sg-color-dot:nth-child(4) { background: #D9C6AE; }
+
+    /* Typography card visual */
+    .sg-visual--type {
+      background: #F6F6F4;
+      flex-direction: column;
+      gap: 4px;
+      padding: 32px;
+    }
+
+    .sg-type-line {
+      transition: letter-spacing 0.4s var(--ease-out);
+    }
+
+    .sg-card:hover .sg-type-line {
+      letter-spacing: 0.04em;
+    }
+
+    .sg-type-serif {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.2;
+      color: var(--black);
+    }
+
+    .sg-type-sans {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: clamp(12px, 1.2vw, 15px);
+      letter-spacing: -0.022em;
+      color: var(--grey);
+    }
+
+    .sg-card-body {
+      padding: 1.5rem 1.5rem 1.8rem;
+    }
+
+    .sg-card-tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(71, 87, 141, 0.08);
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+    }
+
+    .sg-card-title {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .sg-card-desc {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--grey);
+      margin-bottom: 1.2rem;
+    }
+
+    .sg-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s var(--ease-out), gap 0.3s var(--ease-out);
+    }
+
+    .sg-card-link:hover {
+      border-color: var(--black);
+      gap: 0.75rem;
+    }
+
+    .sg-card-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .sg-card-link:hover svg {
+      transform: translateX(2px);
+    }
+
+    @media (max-width: 600px) {
+      .section-header { padding: 2rem 1.5rem 0; }
+      .styleguide-grid { padding: 1.5rem 1.5rem 3rem; grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -331,15 +520,15 @@
 
     <!-- V2 -->
     <article class="version-card">
-      <div class="card-preview">
-        <iframe src="./v2/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
-        <div class="overlay"><a href="./v2/index.html" aria-label="Ver versión 2 a pantalla completa"></a></div>
+      <div class="card-preview" style="background:#0D0B09;">
+        <iframe src="./v3/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
+        <div class="overlay"><a href="./v3/index.html" aria-label="Ver versión 2 a pantalla completa"></a></div>
       </div>
       <div class="card-body">
-        <span class="card-tag">Impeccable</span>
-        <h2 class="card-title">v2 — Refinamiento Impeccable <span class="status status--current">Actual</span></h2>
-        <p class="card-desc">Evolución de v1 con el framework Impeccable aplicado. Tokens de motion (ease-out-quart), colores cálidos sin negro/blanco puro, focus-visible, touch targets de 44px, text measure a 65ch, micro-interacciones de delight y easter egg en consola.</p>
-        <a href="./v2/index.html" class="card-link">
+        <span class="card-tag">Cinematic</span>
+        <h2 class="card-title">v2 — Cinematic Scroll</h2>
+        <p class="card-desc">Experiencia inmersiva vertical: cada sección ocupa el 100% del viewport con imágenes a sangre, parallax sutil, vídeo a pantalla completa como pausa narrativa, galería horizontal de productos y barra de progreso. Fondo negro, tono documental. Inspirada en Apple y Dinesen.</p>
+        <a href="./v3/index.html" class="card-link">
           Ver versión
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -348,15 +537,15 @@
 
     <!-- V3 -->
     <article class="version-card">
-      <div class="card-preview" style="background:#0D0B09;">
-        <iframe src="./v3/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
-        <div class="overlay"><a href="./v3/index.html" aria-label="Ver versión 3 a pantalla completa"></a></div>
+      <div class="card-preview">
+        <iframe src="./v4/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
+        <div class="overlay"><a href="./v4/index.html" aria-label="Ver versión 3 a pantalla completa"></a></div>
       </div>
       <div class="card-body">
-        <span class="card-tag">Cinematic</span>
-        <h2 class="card-title">v3 — Cinematic Scroll <span class="status status--current">Nueva</span></h2>
-        <p class="card-desc">Experiencia inmersiva vertical: cada sección ocupa el 100% del viewport con imágenes a sangre, parallax sutil, vídeo a pantalla completa como pausa narrativa, galería horizontal de productos y barra de progreso. Fondo negro, tono documental. Inspirada en Apple y Dinesen.</p>
-        <a href="./v3/index.html" class="card-link">
+        <span class="card-tag">Minimal</span>
+        <h2 class="card-title">v3 — Type-First Minimal</h2>
+        <p class="card-desc">Tipografía como protagonista absoluta. Hero sin imagen, Taviraj a 13vw. Las fotos aparecen como viñetas contenidas. Productos como lista tipográfica con imagen al hover. Vídeo enmarcado con aire generoso. Fondo blanco, confianza total en la letra. Tono suizo-arquitectónico.</p>
+        <a href="./v4/index.html" class="card-link">
           Ver versión
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -366,29 +555,12 @@
     <!-- V4 -->
     <article class="version-card">
       <div class="card-preview">
-        <iframe src="./v4/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
-        <div class="overlay"><a href="./v4/index.html" aria-label="Ver versión 4 a pantalla completa"></a></div>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Minimal</span>
-        <h2 class="card-title">v4 — Type-First Minimal <span class="status status--current">Nueva</span></h2>
-        <p class="card-desc">Tipografía como protagonista absoluta. Hero sin imagen, Taviraj a 13vw. Las fotos aparecen como viñetas contenidas. Productos como lista tipográfica con imagen al hover. Vídeo enmarcado con aire generoso. Fondo blanco, confianza total en la letra. Tono suizo-arquitectónico.</p>
-        <a href="./v4/index.html" class="card-link">
-          Ver versión
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </article>
-
-    <!-- V5 -->
-    <article class="version-card">
-      <div class="card-preview">
         <iframe src="./v5/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
-        <div class="overlay"><a href="./v5/index.html" aria-label="Ver versión 5 a pantalla completa"></a></div>
+        <div class="overlay"><a href="./v5/index.html" aria-label="Ver versión 4 a pantalla completa"></a></div>
       </div>
       <div class="card-body">
         <span class="card-tag">Editorial</span>
-        <h2 class="card-title">v5 — Grid Editorial <span class="status status--current">Nueva</span></h2>
+        <h2 class="card-title">v4 — Grid Editorial</h2>
         <p class="card-desc">Layout asimétrico tipo revista, inspirado en Apartamento y Cereal. Cuatro tipos de spread (tall-left, wide bleed, two-small, text-left) que alternan ritmo visual. Productos en grid 3 columnas con ratio 3:4. Captions editoriales (serif ES cursiva + sans EN mayúscula). Showroom como cierre visual.</p>
         <a href="./v5/index.html" class="card-link">
           Ver versión
@@ -397,15 +569,15 @@
       </div>
     </article>
 
-    <!-- V6 -->
+    <!-- V5 -->
     <article class="version-card">
       <div class="card-preview" style="background:#F5EDE3;">
         <iframe src="./v6/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
-        <div class="overlay"><a href="./v6/index.html" aria-label="Ver versión 6 a pantalla completa"></a></div>
+        <div class="overlay"><a href="./v6/index.html" aria-label="Ver versión 5 a pantalla completa"></a></div>
       </div>
       <div class="card-body">
         <span class="card-tag">Taller</span>
-        <h2 class="card-title">v6 — Taller Vivo <span class="status status--current">Nueva</span></h2>
+        <h2 class="card-title">v5 — Taller Vivo</h2>
         <p class="card-desc">Dirección orgánica y táctil fuera del brand book. Instrument Serif + DM Sans, paleta terrosa (crema/terracota/verde bosque), bordes redondeados, textura paper-grain, grid mosaico asimétrico, tarjetas de producto con hover lift. Sensación de entrar al taller, no al showroom.</p>
         <a href="./v6/index.html" class="card-link">
           Ver versión
@@ -413,6 +585,71 @@
         </a>
       </div>
     </article>
+
+    <!-- V6 -->
+    <article class="version-card">
+      <div class="card-preview">
+        <iframe src="./v7/index.html" loading="lazy" tabindex="-1" aria-hidden="true" sandbox></iframe>
+        <div class="overlay"><a href="./v7/index.html" aria-label="Ver versión 6 a pantalla completa"></a></div>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Agency</span>
+        <h2 class="card-title">v6 — Social House Style <span class="status status--current">Nueva</span></h2>
+        <p class="card-desc">Patrones extraídos de Social House: tipografía condensada gigante como hero, grids asimétricos 50/50, bloque de color (azul corporativo), imagen circular, franja de servicios como logo strip, botones pill con [+], sección showroom en arena y footer oscuro con columnas. Tono bold y confident.</p>
+        <a href="./v7/index.html" class="card-link">
+          Ver versión
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- ── Style Guide ── -->
+  <div class="section-header">
+    <h2>Style Guide</h2>
+    <p>Tokens de diseño extraídos de la v1 (baseline). Referencia para diseñadores y frontend antes de empezar a desarrollar.</p>
+  </div>
+
+  <section class="styleguide-grid">
+
+    <!-- Colors -->
+    <a href="./style-guide/colors.html" class="sg-card">
+      <div class="sg-card-visual sg-visual--colors">
+        <div class="sg-color-dot"></div>
+        <div class="sg-color-dot"></div>
+        <div class="sg-color-dot"></div>
+        <div class="sg-color-dot"></div>
+      </div>
+      <div class="sg-card-body">
+        <span class="sg-card-tag">Colores</span>
+        <h3 class="sg-card-title">Paleta de color</h3>
+        <p class="sg-card-desc">Los 4 colores base, sistema funcional extendido (textos, bordes, overlays), tabla de contrastes WCAG y CSS custom properties listas para copiar.</p>
+        <span class="sg-card-link">
+          Ver colores
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Typography -->
+    <a href="./style-guide/typography.html" class="sg-card">
+      <div class="sg-card-visual sg-visual--type">
+        <span class="sg-type-line sg-type-serif">Aa Bb Cc</span>
+        <span class="sg-type-line sg-type-sans">Taviraj + Bricolage Grotesque · 200, 300</span>
+      </div>
+      <div class="sg-card-body">
+        <span class="sg-card-tag">Tipografía</span>
+        <h3 class="sg-card-title">Escala tipográfica</h3>
+        <p class="sg-card-desc">Familias, pesos, escala fluida con clamp(), specimens en vivo con tamaño computado dinámico, tabla responsive, botones y CSS tokens.</p>
+        <span class="sg-card-link">
+          Ver tipografía
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
 
   </section>
 

@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sancás — Style Guide · Tipografía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Taviraj:ital,wght@0,200;0,300;1,200;1,300&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #000000;
+      --white:  #FFFFFF;
+      --sand:   #D9C6AE;
+      --blue:   #47578D;
+      --serif:  'Taviraj', Georgia, serif;
+      --sans:   'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+      --ls:     -0.022em;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 200;
+      letter-spacing: var(--ls);
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .page-header {
+      padding: 48px 56px 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .page-header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .page-logo {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      color: var(--black);
+    }
+
+    .page-nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    .page-nav a {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      transition: color 0.3s;
+    }
+    .page-nav a:hover { color: var(--black); }
+    .page-nav a.active { color: var(--black); }
+
+    .page-title-bar {
+      padding: 80px 56px 60px;
+      max-width: 1472px;
+      margin: 0 auto;
+    }
+
+    .page-label {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: var(--serif);
+      font-weight: 200;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .page-subtitle {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: clamp(14px, 1.2vw, 17px);
+      color: rgba(0,0,0,0.4);
+      line-height: 1.7;
+      max-width: 660px;
+    }
+
+    .content {
+      padding: 0 56px 120px;
+      max-width: 1472px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 100px;
+    }
+
+    .section-title {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      margin-bottom: 48px;
+    }
+
+    /* ============================================================
+       FONT FAMILIES
+    ============================================================ */
+    .families-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-bottom: 32px;
+    }
+
+    .family-card {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .family-card--serif {
+      background: #fafaf8;
+    }
+
+    .family-card--sans {
+      background: #f6f6f6;
+    }
+
+    .family-specimen {
+      font-size: clamp(48px, 5vw, 72px);
+      line-height: 1.15;
+      margin-bottom: 32px;
+      color: var(--black);
+    }
+
+    .family-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .family-name {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--black);
+    }
+
+    .family-detail {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 11.5px;
+      color: rgba(0,0,0,0.35);
+      line-height: 1.7;
+    }
+
+    .family-weights {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .weight-sample {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .weight-text {
+      font-size: 20px;
+      color: var(--black);
+    }
+
+    .weight-label {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* ============================================================
+       TYPE SCALE SPECIMENS
+    ============================================================ */
+    .specimen {
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .specimen:last-child {
+      border-bottom: none;
+    }
+
+    .specimen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+      gap: 20px;
+    }
+
+    .specimen-role {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--black);
+      letter-spacing: 0.02em;
+    }
+
+    .specimen-class {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 11px;
+      color: rgba(0,0,0,0.25);
+      background: rgba(0,0,0,0.03);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .specimen-text {
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+
+    /* Live size indicator */
+    .specimen-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 11px;
+      color: var(--blue);
+      background: rgba(71, 87, 141, 0.06);
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+
+    .specimen-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0.5;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Properties table below each specimen */
+    .specimen-props {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .prop {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .prop-key {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .prop-value {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ============================================================
+       RESPONSIVE SCALE TABLE
+    ============================================================ */
+    .scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--sans);
+      font-weight: 200;
+      margin-top: 24px;
+    }
+
+    .scale-table th {
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .scale-table td {
+      font-size: 13px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      vertical-align: middle;
+    }
+
+    .td-role {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--black);
+    }
+
+    .td-code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 11.5px;
+      color: rgba(0,0,0,0.5);
+    }
+
+    .td-size-min {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      color: rgba(0,0,0,0.45);
+    }
+
+    .td-size-pref {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .td-size-max {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .scale-bar-container {
+      position: relative;
+      height: 6px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 3px;
+      min-width: 100px;
+    }
+
+    .scale-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(71,87,141,0.15), rgba(71,87,141,0.4));
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       BUTTONS / LABELS SECTION
+    ============================================================ */
+    .btn-specimens {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-demo-label {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* Button styles from v1 */
+    .demo-btn-underline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+    }
+
+    .demo-btn-bordered {
+      display: inline-block;
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 44px;
+      border: 1px solid rgba(0,0,0,0.2);
+      color: var(--black);
+    }
+
+    .demo-btn-filled {
+      display: inline-block;
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .demo-label {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.45);
+    }
+
+    /* ============================================================
+       VIEWPORT INDICATOR (FLOATING)
+    ============================================================ */
+    .viewport-indicator {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 11px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      opacity: 0.92;
+      transition: opacity 0.3s;
+    }
+
+    .viewport-indicator:hover {
+      opacity: 1;
+    }
+
+    .viewport-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ============================================================
+       CSS TOKENS
+    ============================================================ */
+    .token-block {
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 6px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .token-block pre {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 2;
+      color: rgba(0,0,0,0.7);
+      overflow-x: auto;
+    }
+
+    .token-copy-all {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.3);
+      background: none;
+      border: 1px solid rgba(0,0,0,0.12);
+      padding: 6px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .token-copy-all:hover {
+      color: var(--black);
+      border-color: rgba(0,0,0,0.3);
+    }
+    .token-copy-all.copied {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .families-grid { grid-template-columns: 1fr; }
+      .scale-table { font-size: 12px; }
+    }
+
+    @media (max-width: 768px) {
+      .page-header { padding: 32px 24px; }
+      .page-title-bar { padding: 60px 24px 40px; }
+      .content { padding: 0 24px 80px; }
+      .page-header-inner { flex-direction: column; gap: 16px; }
+      .specimen-header { flex-direction: column; gap: 8px; }
+      .specimen-props { grid-template-columns: 1fr 1fr; }
+      .btn-specimens { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       FLOATING VIEWPORT INDICATOR
+  ============================================================ -->
+  <div class="viewport-indicator" id="viewportIndicator">
+    <span class="viewport-dot"></span>
+    <span id="vpWidth">—</span>
+  </div>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="../index-v1.html" class="page-logo">sancás</a>
+      <nav class="page-nav">
+        <a href="colors.html">Colores</a>
+        <a href="typography.html" class="active">Tipografía</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       TITLE
+  ============================================================ -->
+  <div class="page-title-bar">
+    <p class="page-label">Style Guide · Tipografía</p>
+    <h1 class="page-title">Escala tipográfica</h1>
+    <p class="page-subtitle">
+      Dos familias tipográficas y una escala fluida basada en <code style="font-family: 'SF Mono', monospace; font-size: 0.9em; background: rgba(0,0,0,0.04); padding: 2px 6px; border-radius: 3px;">clamp()</code>.
+      Redimensiona el navegador para ver cómo cada nivel se adapta en tiempo real.
+    </p>
+  </div>
+
+  <div class="content">
+
+    <!-- ============================================================
+         01 · FONT FAMILIES
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section-title">01 · Familias tipográficas</h2>
+
+      <div class="families-grid">
+
+        <!-- SERIF -->
+        <div class="family-card family-card--serif">
+          <div class="family-specimen" style="font-family: var(--serif); font-weight: 200;">
+            Aa Bb Cc
+          </div>
+          <div class="family-meta">
+            <span class="family-name">Taviraj</span>
+            <span class="family-detail">Google Fonts · Serif · Reemplaza a HW Cigars (original brand)</span>
+            <span class="family-detail">--serif: 'Taviraj', Georgia, serif</span>
+          </div>
+          <div class="family-weights">
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--serif); font-weight: 200;">Sancás</span>
+              <span class="weight-label">Extra Light · 200</span>
+            </div>
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--serif); font-weight: 300;">Sancás</span>
+              <span class="weight-label">Light · 300</span>
+            </div>
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--serif); font-weight: 200; font-style: italic;">Sancás</span>
+              <span class="weight-label">Extra Light Italic · 200i</span>
+            </div>
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--serif); font-weight: 300; font-style: italic;">Sancás</span>
+              <span class="weight-label">Light Italic · 300i</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SANS -->
+        <div class="family-card family-card--sans">
+          <div class="family-specimen" style="font-family: var(--sans); font-weight: 200; letter-spacing: -0.022em;">
+            Aa Bb Cc
+          </div>
+          <div class="family-meta">
+            <span class="family-name">Bricolage Grotesque</span>
+            <span class="family-detail">Google Fonts · Sans-serif · Reemplaza a Degular (original brand)</span>
+            <span class="family-detail">--sans: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif</span>
+          </div>
+          <div class="family-weights">
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--sans); font-weight: 200; letter-spacing: -0.022em;">Sancás</span>
+              <span class="weight-label">Extra Light · 200</span>
+            </div>
+            <div class="weight-sample">
+              <span class="weight-text" style="font-family: var(--sans); font-weight: 300; letter-spacing: -0.022em;">Sancás</span>
+              <span class="weight-label">Light · 300</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 · TYPE SCALE — LIVE SPECIMENS
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section-title">02 · Escala tipográfica — Specimens en vivo</h2>
+
+      <!-- HERO HEADLINE -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Hero Headline</span>
+          <span class="specimen-class">.hero-headline-es</span>
+        </div>
+        <div class="specimen-live" data-target="heroSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="heroSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(34px, 5.2vw, 76px);
+          line-height: 1.12;
+          letter-spacing: -0.01em;
+        ">Cada puerta abre un mundo</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(34px, 5.2vw, 76px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.12</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.01em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION HEADLINE -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Section Headline</span>
+          <span class="specimen-class">.projects-headline-es / .products-headline-es</span>
+        </div>
+        <div class="specimen-live" data-target="sectionSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="sectionSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(30px, 4.2vw, 60px);
+          line-height: 1.15;
+          letter-spacing: -0.01em;
+        ">Proyectos que hablan por sí solos</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(30px, 4.2vw, 60px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.15</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.01em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFT HEADLINE -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Craft / Feature Headline</span>
+          <span class="specimen-class">.craft-headline-es</span>
+        </div>
+        <div class="specimen-live" data-target="craftSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="craftSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(30px, 4.8vw, 70px);
+          line-height: 1.12;
+          letter-spacing: -0.015em;
+        ">Ni carpinteros ni interioristas</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(30px, 4.8vw, 70px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.12</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.015em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOWROOM HEADLINE -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Showroom Headline</span>
+          <span class="specimen-class">.showroom-headline-es</span>
+        </div>
+        <div class="specimen-live" data-target="showroomSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="showroomSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(30px, 3.8vw, 54px);
+          line-height: 1.15;
+          letter-spacing: -0.01em;
+        ">Ven a tocar, sentir y decidir</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(30px, 3.8vw, 54px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.15</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.01em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BRAND STATEMENT -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Brand Statement</span>
+          <span class="specimen-class">.brand-es</span>
+        </div>
+        <div class="specimen-live" data-target="brandSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="brandSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(22px, 2.6vw, 36px);
+          line-height: 1.65;
+        ">Somos una empresa familiar especializada en puertas, parquets y acabados de madera.</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(22px, 2.6vw, 36px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.65</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">normal</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFT BODY TEXT (SERIF) -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Body Serif</span>
+          <span class="specimen-class">.craft-text-es / .showroom-text-es</span>
+        </div>
+        <div class="specimen-live" data-target="bodySerifSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="bodySerifSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(16px, 1.55vw, 21px);
+          line-height: 1.72;
+          color: rgba(0,0,0,0.85);
+        ">Nuestro showroom de 3.000 m² en Viladecans es donde los materiales cobran vida. Aquí puedes ver y tocar cada acabado, comparar texturas y recibir asesoramiento personalizado.</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(16px, 1.55vw, 21px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.72</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Color</span>
+            <span class="prop-value">rgba(0,0,0, 0.85)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT NAME (ITALIC) -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Project Name (italic)</span>
+          <span class="specimen-class">.project-name</span>
+        </div>
+        <div class="specimen-live" data-target="projectSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="projectSpecimen" style="
+          font-family: var(--serif);
+          font-weight: 200;
+          font-size: clamp(17px, 2vw, 26px);
+          font-style: italic;
+          letter-spacing: -0.01em;
+        ">Todo al roble</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Taviraj Extra Light Italic</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(17px, 2vw, 26px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Style</span>
+            <span class="prop-value">italic</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.01em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO SUBTITLE / SANS BODY -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Subtitle / Body Sans</span>
+          <span class="specimen-class">.hero-headline-en / .brand-en</span>
+        </div>
+        <div class="specimen-live" data-target="subtitleSpecimen">Ahora: —</div>
+        <p class="specimen-text" id="subtitleSpecimen" style="
+          font-family: var(--sans);
+          font-weight: 200;
+          font-size: clamp(13px, 1.4vw, 19px);
+          line-height: 1.9;
+          letter-spacing: -0.022em;
+          color: rgba(0,0,0,0.5);
+        ">Every door opens a world. Every detail tells a story. We are a family-run company specialising in doors, parquets and wood finishes.</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Bricolage Grotesque Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(13px, 1.4vw, 19px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.9</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">-0.022em (--ls)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMALL BODY SANS -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Small Body Sans</span>
+          <span class="specimen-class">.showroom-text-en / .craft-text-en</span>
+        </div>
+        <div class="specimen-live" data-target="smallBodySpecimen">Ahora: —</div>
+        <p class="specimen-text" id="smallBodySpecimen" style="
+          font-family: var(--sans);
+          font-weight: 200;
+          font-size: clamp(13px, 1.1vw, 15px);
+          line-height: 1.9;
+          letter-spacing: -0.022em;
+          color: rgba(0,0,0,0.42);
+        ">Our 3,000 m² showroom in Viladecans is where materials come to life. Here you can see and touch every finish, compare textures and receive personalised advice from our team.</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Bricolage Grotesque Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">clamp(13px, 1.1vw, 15px)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Line-height</span>
+            <span class="prop-value">1.9</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Color</span>
+            <span class="prop-value">rgba(0,0,0, 0.42)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NAV LINKS -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Navigation Link</span>
+          <span class="specimen-class">.nav-center a</span>
+        </div>
+        <p class="specimen-text" style="
+          font-family: var(--sans);
+          font-weight: 200;
+          font-size: 12.5px;
+          letter-spacing: 0.06em;
+          color: rgba(0,0,0,0.65);
+        ">Trabajos &nbsp;&nbsp; Productos &nbsp;&nbsp; Sobre nosotros &nbsp;&nbsp; Blog</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Bricolage Grotesque Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">12.5px (fijo)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">0.06em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Weight</span>
+            <span class="prop-value">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LABEL -->
+      <div class="specimen">
+        <div class="specimen-header">
+          <span class="specimen-role">Label / Caption</span>
+          <span class="specimen-class">.label</span>
+        </div>
+        <p class="specimen-text" style="
+          font-family: var(--sans);
+          font-weight: 200;
+          font-size: 10px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(0,0,0,0.45);
+        ">Desde 1996 &nbsp;&nbsp;&nbsp; Trabajos &nbsp;&nbsp;&nbsp; Productos &nbsp;&nbsp;&nbsp; Showroom</p>
+        <div class="specimen-props">
+          <div class="prop">
+            <span class="prop-key">Font</span>
+            <span class="prop-value">Bricolage Grotesque Extra Light</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Size</span>
+            <span class="prop-value">10px (fijo)</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Letter-spacing</span>
+            <span class="prop-value">0.22em</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Transform</span>
+            <span class="prop-value">uppercase</span>
+          </div>
+          <div class="prop">
+            <span class="prop-key">Color</span>
+            <span class="prop-value">rgba(0,0,0, 0.45)</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         03 · RESPONSIVE SCALE TABLE
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section-title">03 · Tabla de escala responsive</h2>
+
+      <table class="scale-table">
+        <thead>
+          <tr>
+            <th>Rol</th>
+            <th>Min (375px)</th>
+            <th>Preferido</th>
+            <th>Max (1440px+)</th>
+            <th>Rango visual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-role">Hero Headline</td>
+            <td class="td-size-min">34px</td>
+            <td class="td-size-pref">5.2vw</td>
+            <td class="td-size-max">76px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 100%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Craft Headline</td>
+            <td class="td-size-min">30px</td>
+            <td class="td-size-pref">4.8vw</td>
+            <td class="td-size-max">70px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 92%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Section Headline</td>
+            <td class="td-size-min">30px</td>
+            <td class="td-size-pref">4.2vw</td>
+            <td class="td-size-max">60px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 79%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Showroom Headline</td>
+            <td class="td-size-min">30px</td>
+            <td class="td-size-pref">3.8vw</td>
+            <td class="td-size-max">54px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 71%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Brand Statement</td>
+            <td class="td-size-min">22px</td>
+            <td class="td-size-pref">2.6vw</td>
+            <td class="td-size-max">36px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 47%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Craft Body Text</td>
+            <td class="td-size-min">17px</td>
+            <td class="td-size-pref">1.9vw</td>
+            <td class="td-size-max">25px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 33%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Showroom Body</td>
+            <td class="td-size-min">16px</td>
+            <td class="td-size-pref">1.55vw</td>
+            <td class="td-size-max">21px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 28%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Subtitle / Hero EN</td>
+            <td class="td-size-min">13px</td>
+            <td class="td-size-pref">1.4vw</td>
+            <td class="td-size-max">19px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 25%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Body Sans</td>
+            <td class="td-size-min">13px</td>
+            <td class="td-size-pref">1.2vw</td>
+            <td class="td-size-max">16px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 21%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Small Body</td>
+            <td class="td-size-min">13px</td>
+            <td class="td-size-pref">1.1vw</td>
+            <td class="td-size-max">15px</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 20%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Nav Link</td>
+            <td class="td-size-min" colspan="3" style="text-align:center;">12.5px (fijo)</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 16%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Button / CTA</td>
+            <td class="td-size-min" colspan="3" style="text-align:center;">11px (fijo)</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 14%;"></div></div></td>
+          </tr>
+          <tr>
+            <td class="td-role">Label / Caption</td>
+            <td class="td-size-min" colspan="3" style="text-align:center;">10px (fijo)</td>
+            <td><div class="scale-bar-container"><div class="scale-bar" style="width: 13%;"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================
+         04 · BUTTONS & UI ELEMENTS
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section-title">04 · Botones y elementos UI</h2>
+
+      <div class="btn-specimens">
+
+        <div class="btn-demo">
+          <span class="demo-label">Desde 1996</span>
+          <span class="btn-demo-label">.label</span>
+        </div>
+
+        <div class="btn-demo">
+          <span class="demo-btn-underline">
+            Descubre nuestros trabajos
+            <svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 4H13M13 4L10 1M13 4L10 7" stroke="currentColor" stroke-width="0.75"/></svg>
+          </span>
+          <span class="btn-demo-label">.btn-underline</span>
+        </div>
+
+        <div class="btn-demo">
+          <span class="demo-btn-bordered">Ver todos los trabajos</span>
+          <span class="btn-demo-label">.btn-bordered</span>
+        </div>
+
+        <div class="btn-demo">
+          <span class="demo-btn-filled">Reservar visita</span>
+          <span class="btn-demo-label">.btn-filled</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 · CSS TOKENS
+    ============================================================ -->
+    <section class="section">
+      <h2 class="section-title">05 · CSS Custom Properties</h2>
+
+      <div class="token-block">
+        <button class="token-copy-all" onclick="copyTokens(this)">Copiar todo</button>
+        <pre id="cssTokens">:root {
+  /* ── Font Families ─────────────────────── */
+  --serif: 'Taviraj', Georgia, serif;
+  --sans:  'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+
+  /* ── Base Letter-spacing ───────────────── */
+  --ls: -0.022em;
+
+  /* ── Type Scale (fluid) ────────────────── */
+  --text-hero:          clamp(34px, 5.2vw, 76px);
+  --text-craft-hero:    clamp(30px, 4.8vw, 70px);
+  --text-section:       clamp(30px, 4.2vw, 60px);
+  --text-showroom:      clamp(30px, 3.8vw, 54px);
+  --text-brand:         clamp(22px, 2.6vw, 36px);
+  --text-craft-body:    clamp(17px, 1.9vw, 25px);
+  --text-body-serif:    clamp(16px, 1.55vw, 21px);
+  --text-subtitle:      clamp(13px, 1.4vw, 19px);
+  --text-body:          clamp(13px, 1.2vw, 16px);
+  --text-small:         clamp(13px, 1.1vw, 15px);
+
+  /* ── Fixed Sizes ───────────────────────── */
+  --text-nav:     12.5px;
+  --text-button:  11px;
+  --text-label:   10px;
+}</pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    'use strict';
+
+    /* ── Viewport width indicator ──────────────────── */
+    const vpEl = document.getElementById('vpWidth');
+
+    function updateViewport() {
+      vpEl.textContent = window.innerWidth + 'px';
+    }
+
+    window.addEventListener('resize', updateViewport);
+    updateViewport();
+
+    /* ── Live computed font-size indicators ────────── */
+    const liveIndicators = document.querySelectorAll('.specimen-live');
+
+    function updateLiveIndicators() {
+      liveIndicators.forEach(indicator => {
+        const targetId = indicator.dataset.target;
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+
+        const computed = window.getComputedStyle(targetEl);
+        const size = Math.round(parseFloat(computed.fontSize) * 10) / 10;
+        indicator.textContent = 'Ahora: ' + size + 'px';
+      });
+    }
+
+    window.addEventListener('resize', updateLiveIndicators);
+    // Initial update after fonts load
+    if (document.fonts) {
+      document.fonts.ready.then(updateLiveIndicators);
+    } else {
+      window.addEventListener('load', updateLiveIndicators);
+    }
+    updateLiveIndicators();
+
+    /* ── Copy tokens ───────────────────────────────── */
+    function copyTokens(btn) {
+      const code = document.getElementById('cssTokens').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copiado';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copiar todo';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
